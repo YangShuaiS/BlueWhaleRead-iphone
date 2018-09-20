@@ -4,8 +4,10 @@ target 'BlueWhaleRead' do
     
 pod 'AFNetworking'
 pod 'MJRefresh'
-pod 'SDWebImage'
+pod 'SDWebImage', '~> 4.4.1'
 pod 'SDWebImage/GIF'
+pod 'YYWebImage'
+pod 'YYImage'
 pod 'Masonry'
 pod 'SDCycleScrollView'
 #pod 'FMDB'

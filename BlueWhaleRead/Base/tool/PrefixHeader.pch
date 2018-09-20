@@ -23,6 +23,10 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <FLAnimatedImage/FLAnimatedImage.h>
+
+#import <YYImage/YYImage.h>
+#import <YYWebImage/YYImageCache.h>
+#import <YYWebImage/YYWebImage.h>
 //#import <YYKit.h>
 //#import <YYText/YYText.h>
 //#import <TTTAttributedLabel/TTTAttributedLabel.h>

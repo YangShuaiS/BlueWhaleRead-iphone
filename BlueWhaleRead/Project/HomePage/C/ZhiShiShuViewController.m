@@ -7,15 +7,21 @@
 //
 
 #import "ZhiShiShuViewController.h"
-
+#import "ZhiShiShuScroVuew.h"
 @interface ZhiShiShuViewController ()
-
 @end
 
 @implementation ZhiShiShuViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.hidden = NO;
+    WS(ws);
+    ZhiShiShuScroVuew * scroview = [ZhiShiShuScroVuew new];
+    [self.view addSubview:scroview];
+    [scroview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(ws.view);
+    }];
     // Do any additional setup after loading the view.
 }
 

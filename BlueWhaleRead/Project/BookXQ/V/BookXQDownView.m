@@ -222,7 +222,7 @@
                     CityBadgeListModel * city = bagearray[0];
                     WS(ws);
                     GeneralUpView * genView = [GeneralUpView new];
-                    genView.nav = self.nav;
+                    genView.nav = self.nav; 
                     genView.style = PopUpViewStyleBelong;
                     [self.nav.view addSubview:genView];
                     [genView mas_makeConstraints:^(MASConstraintMaker *make) {
