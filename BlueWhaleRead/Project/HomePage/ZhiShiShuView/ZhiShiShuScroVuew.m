@@ -44,11 +44,19 @@
         make.edges.mas_equalTo(ws);
     }];
     
+//    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchScrollView)];
+//    
+//    [recognizer setNumberOfTapsRequired:1];
+//    
+//    [recognizer setNumberOfTouchesRequired:1];
+//    
+//    [scrollView addGestureRecognizer:recognizer];
+    
     ZSSView = [ZhiShiShuView new];
     [scrollView addSubview:ZSSView];
     [ZSSView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self->scrollView);
-        make.width.mas_equalTo(WIDTH*self->next);
+
     }];
     
     leftView = [ZhiShiSHuLeftView new];
@@ -60,60 +68,63 @@
         make.width.mas_equalTo(LENGTH(1));
     }];
     
-    BaseView * rightview = [BaseView new];
-    rightview.backgroundColor = [UIColor redColor];
-    [scrollView addSubview:rightview];
-    [rightview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(ws);
-        make.right.mas_equalTo(self->scrollView);
-        make.width.mas_equalTo(50);
-        make.height.mas_equalTo(50);
-    }];
+//    BaseView * rightview = [BaseView new];
+//    rightview.backgroundColor = [UIColor redColor];
+//    [scrollView addSubview:rightview];
+//    [rightview mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.mas_equalTo(ws);
+//        make.right.mas_equalTo(self->scrollView);
+//        make.width.mas_equalTo(50);
+//        make.height.mas_equalTo(50);
+//    }];
+//
+//    rightview.userInteractionEnabled = YES;
+//    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(oneButton)];
+//    [rightview addGestureRecognizer:tap];
     
-    rightview.userInteractionEnabled = YES;
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(oneButton)];
-    [rightview addGestureRecognizer:tap];
-    
-    leftview = [BaseView new];
-    leftview.backgroundColor = [UIColor blackColor];
-    [self addSubview:leftview];
-    [leftview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(ws);
-        make.left.mas_equalTo(ws);
-        make.width.mas_equalTo(50);
-        make.height.mas_equalTo(50);
-    }];
-    
-    leftview.userInteractionEnabled = YES;
-    UITapGestureRecognizer * tapp = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(twoButton)];
-    [leftview addGestureRecognizer:tapp];
-    leftview.hidden = YES;
+//    leftview = [BaseView new];
+//    leftview.backgroundColor = [UIColor blackColor];
+//    [self addSubview:leftview];
+//    [leftview mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.mas_equalTo(ws);
+//        make.left.mas_equalTo(ws);
+//        make.width.mas_equalTo(50);
+//        make.height.mas_equalTo(50);
+//    }];
+//
+//    leftview.userInteractionEnabled = YES;
+//    UITapGestureRecognizer * tapp = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(twoButton)];
+//    [leftview addGestureRecognizer:tapp];
+//    leftview.hidden = YES;
 
 }
 
-- (void)oneButton{
-    next++;
-    [ZSSView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(WIDTH*self->next);
-    }];
-    if (next>1) {
-        leftview.hidden = NO;
-    }else{
-        leftview.hidden = YES;
-    }
-}
-- (void)twoButton{
-    next--;
-    [ZSSView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(WIDTH*self->next);
-    }];
-    if (next>1) {
-        leftview.hidden = NO;
-    }else{
-        leftview.hidden = YES;
-    }
-}
+//- (void)oneButton{
+//    next++;
+//    [ZSSView mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.width.mas_equalTo(WIDTH*self->next);
+//    }];
+//    if (next>1) {
+//        leftview.hidden = NO;
+//    }else{
+//        leftview.hidden = YES;
+//    }
+//}
+//- (void)twoButton{
+//    next--;
+//    [ZSSView mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.width.mas_equalTo(WIDTH*self->next);
+//    }];
+//    if (next>1) {
+//        leftview.hidden = NO;
+//    }else{
+//        leftview.hidden = YES;
+//    }
+//}
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentOffset.y>=scrollView.contentSize.height-HEIGHT-HEIGHT/2) {
+        [ZSSView huadong];
+    }
     [leftView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self->scrollView).with.offset(scrollView.contentOffset.x);
     }];
@@ -156,5 +167,28 @@
         Start = NO;
     }
 }
+#define mark ---------------- 放大
+//- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+//    return ZSSView;
+//}
+//- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
+//
+//    CGRect frame = ZSSView.frame;
+//
+//    frame.origin.y = (scrollView.frame.size.height - ZSSView.frame.size.height) > 0 ? (scrollView.frame.size.height - ZSSView.frame.size.height) * 0.5 : 0;
+//    frame.origin.x = (scrollView.frame.size.width - ZSSView.frame.size.width) > 0 ? (scrollView.frame.size.width - ZSSView.frame.size.width) * 0.5 : 0;
+//    ZSSView.frame = frame;
+//
+//    scrollView.contentSize = CGSizeMake(ZSSView.frame.size.width + 30, ZSSView.frame.size.height + 30);
+//}
+- (void)layoutSubviews{
+    [super layoutSubviews];
+}
+
+
+//
+//- (void)touchScrollView{
+//    NSLog(@"被点击了");
+//}
 
 @end
